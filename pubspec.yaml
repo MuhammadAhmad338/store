@@ -43,7 +43,10 @@ dependencies:
   sizer: ^2.0.15
   googleapis_auth: ^1.4.0
   googleapis: ^11.0.0
-  shelf: ^1.4.1
+  antdesign_icons: ^0.0.3
+  cached_network_image: ^3.2.3
+  flutter_rating_bar: ^4.0.1
+  flutter_slidable: ^3.0.0
 
 dev_dependencies:
   flutter_test:

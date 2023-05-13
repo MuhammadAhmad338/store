@@ -4,10 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../services/helperServices.dart';
 import '../utils/latestShoes.dart';
 import '../utils/showModelBottomSheet.dart';
-import '../utils/staggeredTile.dart';
 
 class ProductByCat extends StatefulWidget {
-
   final List<String> imageUrl;
   final String title;
   final String price;
@@ -15,7 +13,8 @@ class ProductByCat extends StatefulWidget {
   const ProductByCat(
       {super.key,
       required this.title,
-      required this.price, required this.imageUrl});
+      required this.price,
+      required this.imageUrl});
 
   @override
   State<ProductByCat> createState() => _ProductByCatState();
@@ -27,7 +26,6 @@ class _ProductByCatState extends State<ProductByCat>
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -82,10 +80,49 @@ class _ProductByCatState extends State<ProductByCat>
                 top: MediaQuery.of(context).size.height * 0.2,
                 left: 8,
                 right: 8),
-            child: TabBarView(controller: _tabController, children: const [
-               LatestShoes(),
-               LatestShoes(),
-               LatestShoes()
+            child: TabBarView(controller: _tabController, children: [
+              FutureBuilder(
+                  future: HelperServices.getMaleData(),
+                  builder: (context, snapshot) {
+                    var maleShoes = snapshot.data;
+                    if (!snapshot.hasData) {
+                      return Text("Error ${snapshot.error}");
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    }
+                    return LatestShoes(
+                      sneakers: maleShoes!,
+                    );
+                  }),
+              FutureBuilder(
+                  future: HelperServices.getFemaleData(),
+                  builder: (context, snapshot) {
+                    var femaleShoes = snapshot.data;
+                    if (!snapshot.hasData) {
+                      return Text("Error ${snapshot.error}");
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    }
+                    return LatestShoes(
+                      sneakers: femaleShoes!,
+                    );
+                  }),
+              FutureBuilder(
+                  future: HelperServices.getKidsData(),
+                  builder: (context, snapshot) {
+                    var kidsShoes = snapshot.data;
+                    if (!snapshot.hasData) {
+                      return Text("Error ${snapshot.error}");
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    }
+                    return LatestShoes(
+                      sneakers: kidsShoes!,
+                    );
+                  }),
             ]),
           )
         ]),

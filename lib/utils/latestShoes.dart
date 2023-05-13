@@ -1,36 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mystore/utils/staggeredTile.dart';
+import '../models/sneakers.dart';
 import '../services/helperServices.dart';
 
 class LatestShoes extends StatelessWidget {
-  const LatestShoes({Key? key}) : super(key: key);
+  final List<Sneaker> sneakers;
+  const LatestShoes({Key? key, required this.sneakers}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  FutureBuilder(
-        future: HelperServices.getFemaleData(),
-        builder: (context, snapshot) {
-          var femaleShoes = snapshot.data;
-          if (!snapshot.hasData) {
-            return Text("Error ${snapshot.error}");
-          } else if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          }
-          return GridView.builder(
+    return GridView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              itemCount: femaleShoes!.length,
+              itemCount: sneakers!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, childAspectRatio: 1.2),
               itemBuilder: (context, index) {
-                var femaleShoe = femaleShoes![index];
-                return  StaggeredTile(
-                    imageUrl: femaleShoe.imageUrl[1],
-                    title: femaleShoe.name,
-                    price: femaleShoe.price
+                var shoe = sneakers[index];
+                return GestureDetector(
+                  onTap:() {
+                    context.go(Uri(
+                        path: "/productPage",
+                        queryParameters: {
+                          'title': shoe.title,
+                          'name': shoe.name,
+                          'category': shoe.category,
+                          'price': shoe.price,
+                          'imageUrl': '${shoe.imageUrl}',
+                          'description': shoe.description,
+                          'sizes': '${shoe.sizes}'
+                        }).toString());
+                  },
+                  child: StaggeredTile(
+                      imageUrl: shoe.imageUrl[0],
+                      title: shoe.name,
+                      price: shoe.price
+                  ),
                 );
               });
-        }
-    );
+
   }
 }

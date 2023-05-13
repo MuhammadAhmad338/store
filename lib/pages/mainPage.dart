@@ -4,7 +4,6 @@ import 'package:ionicons/ionicons.dart';
 import 'package:mystore/pages/addPage.dart';
 import 'package:mystore/pages/cartPage.dart';
 import 'package:mystore/pages/homePage.dart';
-import 'package:mystore/pages/productByCat.dart';
 import 'package:mystore/pages/profilePage.dart';
 import 'package:mystore/pages/searchPage.dart';
 import 'package:mystore/utils/bottomNavigationBar.dart';

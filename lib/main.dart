@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mystore/routes.dart';
+import 'package:mystore/services/helperServices.dart';
 import 'package:mystore/services/mainServices.dart';
+import 'package:mystore/services/productServices.dart';
 import 'package:mystore/services/themeServices.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -8,7 +10,9 @@ import 'package:sizer/sizer.dart';
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => ThemeService()),
-    ChangeNotifierProvider(create: (_) => MainServices())
+    ChangeNotifierProvider(create: (_) => MainServices()),
+    ChangeNotifierProvider(create: (_) => HelperServices()),
+    ChangeNotifierProvider(create: (_) => ProductServices())
   ], child: const MyApp()));
 }
 

@@ -79,8 +79,8 @@ class ProductCard extends StatelessWidget {
                           fontSize: 22
                         ),
                       ),
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           Text(
                             "Colors",
                           ),

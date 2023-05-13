@@ -15,9 +15,10 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
-
-  late final TabController _tabController = TabController(vsync: this, length: 3);
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController =
+      TabController(vsync: this, length: 3);
 
   @override
   Widget build(BuildContext context) {
@@ -83,34 +84,40 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.405,
                     child: FutureBuilder(
-                      future: HelperServices.getMaleData(),
-                      builder: (context, snapshot) {
-                        var maleShoes = snapshot.data;
-                        if (!snapshot.hasData) {
-                          return Text("Error ${snapshot.error}");
-                        } else if (snapshot.connectionState == ConnectionState.waiting) {
-                          return CircularProgressIndicator();
-                        }
+                        future: HelperServices.getMaleData(),
+                        builder: (context, snapshot) {
+                          var maleShoes = snapshot.data;
+                          if (!snapshot.hasData) {
+                            return Text("Error ${snapshot.error}");
+                          } else if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          }
 
-                        return ListView.builder(
-                            itemCount: maleShoes!.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              var maleShoe = maleShoes[index];
-                              var image = maleShoe.imageUrl[0];
-                              return GestureDetector(
-                                  onTap: () {
-
-                                    var title = maleShoe.title;
-                                    var price = maleShoe.price;
-                                    context.go(Uri(path: "/productByCat",
-                                         queryParameters: {'title': title, 'price': '$price', 'imageUrl': '$image'}
-                                    ).toString());
-                                  },
-                                  child: ProductCard(sneaker: maleShoe, imageUrl: image,));
-                        });
-                      }
-                    ),
+                          return ListView.builder(
+                              itemCount: maleShoes!.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                var maleShoe = maleShoes[index];
+                                var image = maleShoe.imageUrl[0];
+                                return GestureDetector(
+                                    onTap: () {
+                                      var title = maleShoe.title;
+                                      var price = maleShoe.price;
+                                      context.go(Uri(
+                                          path: "/productByCat",
+                                          queryParameters: {
+                                            'title': title,
+                                            'price': price,
+                                            'imageUrl': image
+                                          }).toString());
+                                    },
+                                    child: ProductCard(
+                                      sneaker: maleShoe,
+                                      imageUrl: image,
+                                    ));
+                              });
+                        }),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,34 +161,38 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.405,
                     child: FutureBuilder(
-                      future: HelperServices.getFemaleData(),
-                      builder: (context, snapshot) {
-                        var femaleShoes = snapshot.data;
-                        if (!snapshot.hasData) {
-                          return Text("Error ${snapshot.error}");
-                        } else if (snapshot.connectionState == ConnectionState.waiting) {
-                          return CircularProgressIndicator();
-                        }
+                        future: HelperServices.getFemaleData(),
+                        builder: (context, snapshot) {
+                          var femaleShoes = snapshot.data;
+                          if (!snapshot.hasData) {
+                            return Text("Error ${snapshot.error}");
+                          } else if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          }
 
-                        return ListView.builder(
-                            itemCount: femaleShoes!.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-
-                              var femaleShoe = femaleShoes[index];
-                              var image = femaleShoe.imageUrl[0];
-                              return GestureDetector(
-                                  onTap: () {
-                                    var title = femaleShoe.title;
-                                    var price = femaleShoe.price;
-                                    context.go(Uri(path: "/productByCat",
-                                        queryParameters: {'title': title, 'price': '$price', 'imageUrl': '${femaleShoe.imageUrl}'}
-                                    ).toString());
-                                  },
-                                  child: ProductCard(sneaker: femaleShoe, imageUrl: image));
-                        });
-                      }
-                    ),
+                          return ListView.builder(
+                              itemCount: femaleShoes!.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                var femaleShoe = femaleShoes[index];
+                                var image = femaleShoe.imageUrl[0];
+                                return GestureDetector(
+                                    onTap: () {
+                                      var title = femaleShoe.title;
+                                      var price = femaleShoe.price;
+                                      context.go(Uri(
+                                          path: "/productByCat",
+                                          queryParameters: {
+                                            'title': title,
+                                            'price': price,
+                                            'imageUrl': '${femaleShoe.imageUrl}'
+                                          }).toString());
+                                    },
+                                    child: ProductCard(
+                                        sneaker: femaleShoe, imageUrl: image));
+                              });
+                        }),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -225,42 +236,49 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.405,
                     child: FutureBuilder(
-                      future: HelperServices.getKidsData(),
-                      builder: (context, snapshot) {
-                        var kidsShoes = snapshot.data;
+                        future: HelperServices.getKidsData(),
+                        builder: (context, snapshot) {
+                          var kidsShoes = snapshot.data;
 
-                        if (!snapshot.hasData) {
-                          return Text("Error ${snapshot.error}");
-                        } else if (snapshot.connectionState == ConnectionState.waiting) {
-                          return CircularProgressIndicator();
-                        }
+                          if (!snapshot.hasData) {
+                            return Text("Error ${snapshot.error}");
+                          } else if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          }
 
-                        return ListView.builder(
-                            itemCount: kidsShoes!.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              var kidShoe = kidsShoes[index];
-                              var image = kidShoe.imageUrl[0];
-                              return GestureDetector(
-                                  onTap: () {
-                                    var title = kidShoe.title;
-                                    var price = kidShoe.price;
-                                    context.go(Uri(path: "/productByCat",
-                                        queryParameters: {'title': title, 'price': '$price', 'imageUrl': '$image'}
-                                    ).toString());
-                                  },
-                                  child: ProductCard(sneaker: kidShoe, imageUrl: image ));
-                        });
-                      }
-                    ),
+                          return ListView.builder(
+                              itemCount: kidsShoes!.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                var kidShoe = kidsShoes[index];
+                                var image = kidShoe.imageUrl[0];
+                                return GestureDetector(
+                                    onTap: () {
+                                      var title = kidShoe.title;
+                                      var price = kidShoe.price;
+                                      context.go(Uri(
+                                          path: "/productByCat",
+                                          queryParameters: {
+                                            'title': title,
+                                            'price': price,
+                                            'imageUrl': image
+                                          }).toString());
+                                    },
+                                    child: ProductCard(
+                                        sneaker: kidShoe, imageUrl: image));
+                              });
+                        }),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Text("Latest Shoes",
+                      Text(
+                        "Latest Shoes",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text("Show All",
+                      Text(
+                        "Show All",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       )
                     ],
@@ -276,21 +294,23 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                               return Padding(
                                 padding: const EdgeInsets.all(4.0),
                                 child: Container(
-                                  height: MediaQuery.of(context).size.height * 0.12,
-                                  width: MediaQuery.of(context).size.width * 0.28,
-                                  decoration: BoxDecoration(
-                                      boxShadow: const [
-                                         BoxShadow(
-                                           blurRadius: 0.8,
-                                           spreadRadius: 1,
-                                           color: Colors.black38,
-                                           offset: Offset(0, 1)
-                                         )
-                                      ],
-                                      color: Colors.red,
-                                      borderRadius: BorderRadius.circular(12)),
-                                  child: Image.network("https://d326fntlu7tb1e.cloudfront.net/uploads/58282ea3-b815-4d26-9f4f-382aa62f67cf-HP5404_a1.webp")
-                                ),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.12,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.28,
+                                    decoration: BoxDecoration(
+                                        boxShadow: const [
+                                          BoxShadow(
+                                              blurRadius: 0.8,
+                                              spreadRadius: 1,
+                                              color: Colors.black38,
+                                              offset: Offset(0, 1))
+                                        ],
+                                        color: Colors.red,
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    child: Image.network(
+                                        "https://d326fntlu7tb1e.cloudfront.net/uploads/58282ea3-b815-4d26-9f4f-382aa62f67cf-HP5404_a1.webp")),
                               );
                             })),
                   )

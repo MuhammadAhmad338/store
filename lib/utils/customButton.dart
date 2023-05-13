@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -7,9 +7,14 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(16))
+      padding: const  EdgeInsets.all(12.0),
+      decoration:  BoxDecoration(
+        border: Border.all(
+          color: Colors.black,
+          width: 2.0,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
+        color: Colors.grey.withOpacity(0.1),
       ),
       child: Text(text.toString()),
     );
