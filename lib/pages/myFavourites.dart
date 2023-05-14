@@ -91,7 +91,9 @@ class _FavouritesState extends State<Favourites> {
                                     ],
                                   ),
                                   const Icon(
-                                      Ionicons.heart_dislike_circle_outline)
+                                      Ionicons.heart_dislike_circle_outline,
+                                      size: 36,
+                                  )
                                 ],
                               ),
                             ),
