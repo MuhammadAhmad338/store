@@ -9,6 +9,7 @@ import 'package:mystore/pages/searchPage.dart';
 import 'package:mystore/utils/bottomNavigationBar.dart';
 import 'package:provider/provider.dart';
 import '../services/mainServices.dart';
+import 'myFavourites.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({super.key});
@@ -16,7 +17,7 @@ class MainPage extends StatelessWidget {
   List<Widget> pageList = [
     const HomePage(),
     const SearchPage(),
-    const AddPage(),
+    const Favourites(),
     const CartPage(),
     const ProfilePage()
   ];
@@ -54,7 +55,7 @@ class MainPage extends StatelessWidget {
                 onTap: () {
                   provider.changeIndex(2);
                 },
-                icon: Ionicons.add,
+                icon: Ionicons.heart_circle_outline,
               ),
               BottomBar(
                 onTap: () {
