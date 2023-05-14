@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mystore/utils/staggeredTile.dart';
 import '../models/sneakers.dart';
-import '../services/helperServices.dart';
 
 class LatestShoes extends StatelessWidget {
   final List<Sneaker> sneakers;
@@ -13,7 +12,7 @@ class LatestShoes extends StatelessWidget {
     return GridView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              itemCount: sneakers!.length,
+              itemCount: sneakers.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, childAspectRatio: 1.2),
               itemBuilder: (context, index) {
