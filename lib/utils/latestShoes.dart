@@ -17,19 +17,15 @@ class LatestShoes extends StatelessWidget {
                   crossAxisCount: 2, childAspectRatio: 1.2),
               itemBuilder: (context, index) {
                 var shoe = sneakers[index];
+                Sneaker sneakerShoe = Sneaker(id: shoe.id,
+                  name: shoe.name, category: shoe.category,
+                  imageUrl: shoe.imageUrl, price: shoe.price, description: shoe.description,
+                  title: shoe.title, oldPrice: shoe.price, sizes: shoe.sizes,
+                );
+                print(shoe);
                 return GestureDetector(
                   onTap:() {
-                    context.go(Uri(
-                        path: "/productPage",
-                        queryParameters: {
-                          'title': shoe.title,
-                          'name': shoe.name,
-                          'category': shoe.category,
-                          'price': shoe.price,
-                          'imageUrl': '${shoe.imageUrl}',
-                          'description': shoe.description,
-                          'sizes': '${shoe.sizes}'
-                        }).toString());
+                    context.go("/productPage", extra: sneakerShoe);
                   },
                   child: StaggeredTile(
                       imageUrl: shoe.imageUrl[0],
@@ -38,6 +34,5 @@ class LatestShoes extends StatelessWidget {
                   ),
                 );
               });
-
   }
 }

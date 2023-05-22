@@ -7,6 +7,8 @@ import 'package:mystore/models/sneakers.dart';
 class HelperServices extends ChangeNotifier {
   double _value = 0;
   double get value => _value;
+  int _currentIndex = 0;
+  int get currentIndex => _currentIndex;
   int _count = 0;
   int get count => _count;
   List<dynamic> _shoes = [];
@@ -86,5 +88,12 @@ class HelperServices extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void updateIndex(int newIndex) {
+    _currentIndex = newIndex;
+    notifyListeners();
+  }
+
+
   
 }

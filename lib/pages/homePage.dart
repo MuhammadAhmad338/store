@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    var themeProvider = Provider.of<ThemeService>(context, listen: false);
+    var themeProvider = Provider.of<ThemeService>(context);
     return Scaffold(
         body: SizedBox(
       height: MediaQuery.of(context).size.height,

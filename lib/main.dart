@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mystore/routes.dart';
+import 'package:mystore/services/cartServices.dart';
+import 'package:mystore/services/favouriteServices.dart';
 import 'package:mystore/services/helperServices.dart';
 import 'package:mystore/services/mainServices.dart';
 import 'package:mystore/services/productServices.dart';
@@ -12,7 +14,9 @@ void main() {
     ChangeNotifierProvider(create: (_) => ThemeService()),
     ChangeNotifierProvider(create: (_) => MainServices()),
     ChangeNotifierProvider(create: (_) => HelperServices()),
-    ChangeNotifierProvider(create: (_) => ProductServices())
+    ChangeNotifierProvider(create: (_) => ProductServices()),
+    ChangeNotifierProvider(create: (_) => FavouriteServices()),
+    ChangeNotifierProvider(create: (_) => CartServices())
   ], child: const MyApp()));
 }
 

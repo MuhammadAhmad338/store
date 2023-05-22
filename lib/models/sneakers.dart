@@ -14,6 +14,7 @@ class Sneaker {
   final String title;
   final String oldPrice;
   final List<dynamic> sizes;
+  int quantity;
 
   Sneaker({
     required this.id,
@@ -25,6 +26,7 @@ class Sneaker {
     required this.title,
     required this.oldPrice,
     required this.sizes,
+    this.quantity = 1
   });
 
    factory Sneaker.fromJson(Map<String, dynamic> json) => Sneaker(

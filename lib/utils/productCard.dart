@@ -1,14 +1,22 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:mystore/models/sneakers.dart';
+import 'package:provider/provider.dart';
+import '../models/sneakers.dart';
+import '../services/favouriteServices.dart';
 
 class ProductCard extends StatelessWidget {
+
   final Sneaker sneaker;
   final String imageUrl;
-  const ProductCard({super.key, required this.sneaker, required this.imageUrl});
+
+  const ProductCard({super.key,
+    required this.sneaker,
+    required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
+
+    var productProvider = Provider.of<FavouriteServices>(context);
     return Padding(
         padding: const EdgeInsets.fromLTRB(8, 0, 20, 0),
         child: ClipRRect(
@@ -38,8 +46,11 @@ class ProductCard extends StatelessWidget {
                       top: 5,
                       right: 5,
                       child: IconButton(
-                        icon: const Icon(Icons.favorite),
+                        icon: productProvider.isFavourite ?
+                        const Icon(Icons.favorite, color: Colors.red,)
+                            : const Icon(Icons.favorite_border_outlined, color: Colors.red),
                         onPressed: () {
+                         productProvider.setSneakers(sneaker);
                           // Add your favorite button logic here
                         },
                       ),
@@ -51,15 +62,13 @@ class ProductCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children:  [
-                        Text(
-                          sneaker.name,
+                        Text(sneaker.name,
                           style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                               color: Colors.black),
                         ),
-                        Text(
-                          sneaker.category,
+                        Text(sneaker.category,
                           style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
@@ -81,14 +90,10 @@ class ProductCard extends StatelessWidget {
                       ),
                       const Row(
                         children: [
-                          Text(
-                            "Colors",
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
+                          Text("Colors"),
+                          SizedBox(width: 5),
                           ChoiceChip(
-                            label: Text(" "),
+                            label: Text(""),
                             selected: true,
                           )
                         ],
