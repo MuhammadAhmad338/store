@@ -38,7 +38,9 @@ class CartServices extends ChangeNotifier {
 
   //Here you can decrease the cart item count
   void decreaseCount(Sneaker sneaker) {
-    sneaker.quantity = sneaker.quantity - 1;
+    if (sneaker.quantity > 1) {
+      sneaker.quantity = sneaker.quantity - 1;
+    }
     notifyListeners();
   }
 

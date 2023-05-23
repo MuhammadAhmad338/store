@@ -94,6 +94,4 @@ class HelperServices extends ChangeNotifier {
     notifyListeners();
   }
 
-
-  
 }
