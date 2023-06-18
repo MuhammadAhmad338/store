@@ -20,8 +20,7 @@ class ProductByCat extends StatefulWidget {
   State<ProductByCat> createState() => _ProductByCatState();
 }
 
-class _ProductByCatState extends State<ProductByCat>
-    with SingleTickerProviderStateMixin {
+class _ProductByCatState extends State<ProductByCat> with SingleTickerProviderStateMixin {
   late TabController _tabController = TabController(length: 3, vsync: this);
 
   @override

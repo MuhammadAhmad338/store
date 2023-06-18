@@ -3,6 +3,7 @@ import 'package:mystore/routes.dart';
 import 'package:mystore/services/cartServices.dart';
 import 'package:mystore/services/favouriteServices.dart';
 import 'package:mystore/services/helperServices.dart';
+import 'package:mystore/services/imageServices.dart';
 import 'package:mystore/services/mainServices.dart';
 import 'package:mystore/services/productServices.dart';
 import 'package:mystore/services/themeServices.dart';
@@ -16,7 +17,8 @@ void main() {
     ChangeNotifierProvider(create: (_) => HelperServices()),
     ChangeNotifierProvider(create: (_) => ProductServices()),
     ChangeNotifierProvider(create: (_) => FavouriteServices()),
-    ChangeNotifierProvider(create: (_) => CartServices())
+    ChangeNotifierProvider(create: (_) => CartServices()),
+    ChangeNotifierProvider(create: (_) => ImageServices())
   ], child: const MyApp()));
 }
 

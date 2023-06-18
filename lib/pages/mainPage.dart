@@ -1,7 +1,6 @@
 // ignore_for_file: file_names, must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:mystore/pages/addPage.dart';
 import 'package:mystore/pages/cartPage.dart';
 import 'package:mystore/pages/homePage.dart';
 import 'package:mystore/pages/profilePage.dart';
