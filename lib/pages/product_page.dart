@@ -1,5 +1,4 @@
 import 'package:antdesign_icons/antdesign_icons.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +7,6 @@ import 'package:ionicons/ionicons.dart';
 import '../models/sneakers.dart';
 import '../services/cartServices.dart';
 import '../services/helperServices.dart';
-import '../services/productServices.dart';
 import '../utils/checkoutButton.dart';
 
 class ProductPage extends StatefulWidget {

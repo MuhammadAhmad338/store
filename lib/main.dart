@@ -5,7 +5,7 @@ import 'package:mystore/services/favouriteServices.dart';
 import 'package:mystore/services/helperServices.dart';
 import 'package:mystore/services/imageServices.dart';
 import 'package:mystore/services/mainServices.dart';
-import 'package:mystore/services/productServices.dart';
+import 'package:mystore/services/userServices.dart';
 import 'package:mystore/services/themeServices.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -15,7 +15,7 @@ void main() {
     ChangeNotifierProvider(create: (_) => ThemeService()),
     ChangeNotifierProvider(create: (_) => MainServices()),
     ChangeNotifierProvider(create: (_) => HelperServices()),
-    ChangeNotifierProvider(create: (_) => ProductServices()),
+    ChangeNotifierProvider(create: (_) => UserServices()),
     ChangeNotifierProvider(create: (_) => FavouriteServices()),
     ChangeNotifierProvider(create: (_) => CartServices()),
     ChangeNotifierProvider(create: (_) => ImageServices())

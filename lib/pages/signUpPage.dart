@@ -1,6 +1,10 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:mystore/models/user.dart';
+import 'package:provider/provider.dart';
 import 'package:mystore/pages/signInPage.dart';
+
+import '../services/userServices.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -17,6 +21,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserServices>(context);
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -75,6 +80,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
         
+                      userProvider.signUpUser(UserModel(
+                        username: _usernameController.text,
+                         email: _emailController.text,
+                       password: _passwordController.text));
+
                       _usernameController.clear();
                       _emailController.clear();
                       _passwordController.clear();

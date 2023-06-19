@@ -1,6 +1,9 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:mystore/models/user.dart';
 import 'package:mystore/pages/signUpPage.dart';
+import 'package:mystore/services/userServices.dart';
+import 'package:provider/provider.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -17,6 +20,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+     var userProvider = Provider.of<UserServices>(context);
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -60,7 +64,10 @@ class _SignInScreenState extends State<SignInScreen> {
               ElevatedButton(
                   onPressed: () {
                      if (_formKey.currentState!.validate()) {
-                 
+                userProvider.signUpUser(UserModel(
+    
+                         email: _emailController.text,
+                       password: _passwordController.text)); 
                         
                        _emailController.clear();
                        _passwordController.clear();
