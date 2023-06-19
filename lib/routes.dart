@@ -3,20 +3,19 @@ import 'package:go_router/go_router.dart';
 import 'package:mystore/models/sneakers.dart';
 import 'package:mystore/pages/addPage.dart';
 import 'package:mystore/pages/cartPage.dart';
-import 'package:mystore/pages/mainPage.dart';
-import 'package:mystore/pages/myFavourites.dart';
 import 'package:mystore/pages/productByCat.dart';
 import 'package:mystore/pages/product_page.dart';
 import 'package:mystore/pages/profilePage.dart';
 import 'package:mystore/pages/searchPage.dart';
 import 'pages/homePage.dart';
+import 'pages/signInPage.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: "/",
   routes: [
     GoRoute(
       path: "/",
-      builder: (context, state) => MainPage(),
+      builder: (context, state) => const SignInScreen(),
     ),
     GoRoute(
       path: "/home",

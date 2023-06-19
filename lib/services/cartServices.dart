@@ -4,10 +4,12 @@ import 'package:mystore/models/sneakers.dart';
 class CartServices extends ChangeNotifier {
   final List<Sneaker> _cart = [];
   List<Sneaker> get cart => _cart;
+  double _totalAmount = 0;
+  double get totalAmount => _totalAmount;
   bool _switchValue = false;
   bool get switchValue => _switchValue;
 
-  void removeItemFromCart(String id) {
+  void removeItemFromCart(int id) {
     _cart.removeWhere((element) => element.id == id);
     notifyListeners();
   }
@@ -48,4 +50,12 @@ class CartServices extends ChangeNotifier {
     _switchValue = !_switchValue;
     notifyListeners();
   }
+
+  void calculateTotalAmount() {
+    for (var item in _cart) {
+      _totalAmount += (item.price * item.quantity) as double;
+    }
+    notifyListeners();
+  }
+
 }

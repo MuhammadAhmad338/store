@@ -20,7 +20,7 @@ class LatestShoes extends StatelessWidget {
                 Sneaker sneakerShoe = Sneaker(id: shoe.id,
                   name: shoe.name, category: shoe.category,
                   imageUrl: shoe.imageUrl, price: shoe.price, description: shoe.description,
-                  title: shoe.title, oldPrice: shoe.price, sizes: shoe.sizes,
+                  title: shoe.title, oldPrice: shoe.oldPrice, sizes: shoe.sizes,
                 );
                 print(shoe);
                 return GestureDetector(

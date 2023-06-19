@@ -5,6 +5,7 @@ import 'package:flutter/services.dart' as the_bundle;
 import 'package:mystore/models/sneakers.dart';
 
 class HelperServices extends ChangeNotifier {
+  
   double _value = 0;
   double get value => _value;
   int _currentIndex = 0;

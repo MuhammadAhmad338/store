@@ -4,7 +4,7 @@ class StaggeredTile extends StatelessWidget {
 
   final String imageUrl;
   final String title;
-  final String price;
+  final double price;
 
   const StaggeredTile({Key? key,
     required this.imageUrl,
@@ -43,7 +43,7 @@ class StaggeredTile extends StatelessWidget {
                   Text(title, style: const TextStyle(
                       fontWeight: FontWeight.bold
                   ),),
-                  Text(price, style: const TextStyle(
+                  Text("\$${price}", style: const TextStyle(
                       fontWeight: FontWeight.normal
                   ))
                 ],

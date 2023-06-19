@@ -11,12 +11,13 @@ class ImageServices extends ChangeNotifier {
     try {
       final ImagePicker imagePicker = ImagePicker();
       final pickedImage =
-          await imagePicker.pickImage(source: ImageSource.gallery);
+          await imagePicker.pickImage(source: ImageSource.camera);
       _image = File(pickedImage!.path);
       notifyListeners();
     } catch (error) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Image not got pickedUp!")));
+          .showSnackBar(const SnackBar(content: Text("Image not got pickedUp!")));
     }
   }
+  
 }

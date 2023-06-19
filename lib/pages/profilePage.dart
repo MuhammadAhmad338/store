@@ -19,7 +19,6 @@ class _ProfilePageState extends State<ProfilePage> {
     var themeProvider = Provider.of<ThemeService>(context);
 
     return Scaffold(
-        backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -44,7 +43,6 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Icon(
                               Icons.camera_alt,
                               size: 30.0,
-                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -55,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         const CircleAvatar(
                           radius: 64,
                           backgroundColor: Colors.transparent,
-                          backgroundImage: AssetImage("assets/images/adidas.png"),
+                          backgroundImage: AssetImage("assets/images/profile-user.png"),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -66,22 +64,29 @@ class _ProfilePageState extends State<ProfilePage> {
                             right: 5.0,
                             child: Icon(
                               Icons.camera_alt,
-                              size: 30.0,
-                              color: Colors.black,
+                              size: 30.0
                             ),
                           ),
                         ),
                       ],
                     ),
-              const Column(
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Username",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold,
+                    fontSize: MediaQuery.of(context).size.height * 0.022,
+                    ),
                   ),
                   Text(
                     "Email",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold,
+                    fontSize: MediaQuery.of(context).size.height * 0.033
+                    ),
                   )
                 ],
               ),

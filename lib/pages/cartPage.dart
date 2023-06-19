@@ -30,14 +30,11 @@ class CartPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Text("My Cart",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            color: Colors.black)),
-                  ),
+                  Text("Total: ${cartProvider.totalAmount}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          )),
                  Row(
 
                    children: [
@@ -170,6 +167,7 @@ class CartPage extends StatelessWidget {
                                             onTap: () {
                                               cartProvider
                                                   .increaseCount(cartSneakers);
+                                              cartProvider.calculateTotalAmount();
                                             },
                                             child: Container(
                                               padding: const EdgeInsets.all(2),
@@ -190,6 +188,7 @@ class CartPage extends StatelessWidget {
                                             onTap: () {
                                               cartProvider
                                                   .decreaseCount(cartSneakers);
+                                              cartProvider.calculateTotalAmount();
                                             },
                                             child: Container(
                                               padding: const EdgeInsets.all(2),

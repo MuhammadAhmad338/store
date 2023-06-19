@@ -14,7 +14,7 @@ class ThemeService extends ChangeNotifier {
   final lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
-    primaryColor: Colors.blue,
+    primaryColor: Colors.green,
     fontFamily: 'Tilt Neon',
   );
 
