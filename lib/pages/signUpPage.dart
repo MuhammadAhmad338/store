@@ -62,7 +62,10 @@ class _SignUpPageState extends State<SignUpPage> {
             ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    
+
+                    _usernameController.clear();
+                    _emailController.clear();
+                    _passwordController.clear();
                   }
                 },
                 child: const Text(

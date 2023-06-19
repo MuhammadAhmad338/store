@@ -73,7 +73,7 @@ class _ProductPageState extends State<ProductPage> {
                           productProvider.updateIndex(newIndex);
                         },
                         itemBuilder: (context, index) {
-                          print("${widget.sneaker.imageUrl[index]} dont get");
+
                           return Stack(
                             children: [
                               SizedBox(
@@ -225,8 +225,7 @@ class _ProductPageState extends State<ProductPage> {
                                           itemBuilder: (context, index) {
                                             productProvider.shoeSizes =
                                                 widget.sneaker.sizes;
-                                            print(widget.sneaker.sizes[index]
-                                                ['size']);
+
                                             return Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(

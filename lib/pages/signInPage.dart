@@ -10,7 +10,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -26,7 +26,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 style: TextStyle(fontWeight: FontWeight.bold)),
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             TextFormField(
-              controller: _controller,
+              controller: _emailController,
               validator: (value) {
                 if (value!.isEmpty) {
                   return "Please enter something";
@@ -50,7 +50,10 @@ class _SignInScreenState extends State<SignInScreen> {
             ElevatedButton(
                 onPressed: () {
                    if (_formKey.currentState!.validate()) {
-                     
+
+
+                     _emailController.clear();
+                     _passwordController.clear();
                   }
                 },
                 child: const Text(
