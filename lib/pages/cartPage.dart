@@ -88,29 +88,31 @@ class CartPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("SubTotal",
+                  Text("Subtotal",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: MediaQuery.of(context).size.height * 0.036,
+                        fontSize: MediaQuery.of(context).size.height * 0.040,
                       )),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "1000",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
-                            fontSize: 26),
+                            fontSize:
+                                MediaQuery.of(context).size.height * 0.036),
                       ),
                       SizedBox(
                           width: MediaQuery.of(context).size.width * 0.008),
-                      const Text(
+                      Text(
                         "USD",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                            fontSize:
+                                MediaQuery.of(context).size.height * 0.025,
                             color: Colors.grey),
                       )
                     ],
@@ -132,9 +134,10 @@ class CartPage extends StatelessWidget {
                   // Do something
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding:
+                      EdgeInsets.all(MediaQuery.of(context).size.width * 0.027),
                   child: Container(
-                    height: 70,
+                    height: MediaQuery.of(context).size.height * 0.08,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: Colors.black,

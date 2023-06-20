@@ -37,7 +37,10 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                         color: Colors.transparent,
                         borderRadius: BorderRadius.circular(8)),
-                    child: Image.asset("assets/images/inviteFriend.png", fit: BoxFit.cover,),
+                    child: Image.asset(
+                      "assets/images/inviteFriend.png",
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ],
