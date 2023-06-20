@@ -11,7 +11,11 @@ class FavoritePage extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width * 0.06,
+                  bottom: MediaQuery.of(context).size.width * 0.01,
+                  right: MediaQuery.of(context).size.width * 0.06
+              ),
               child: Row(
                 children: [
                   Text("Favorites",
@@ -25,12 +29,15 @@ class FavoritePage extends StatelessWidget {
             Expanded(
                 child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: 15,
+                    itemCount: 3,
                     itemBuilder: (context, index) {
-                      return const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Card(
-                            elevation: 2,
+                      return Padding(
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width * 0.04,
+                              bottom: MediaQuery.of(context).size.width * 0.04,
+                              right: MediaQuery.of(context).size.width * 0.04),
+                          child: const Card(
+                            elevation: 7,
                             child: CustomCard(),
                           ));
                     }))
