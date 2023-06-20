@@ -8,7 +8,7 @@ class UserServices extends ChangeNotifier {
   
   Future<void> signInUser(UserModel userModel) async {
     try {
-      var response = await http.post(Uri.parse("http://localhost:8080/stores/signIn"),
+      var response = await http.post(Uri.parse("https://webappoo7.onrender.com/signIn"),
           headers: {"Content-Type": "application/json"},
           body: userModel.toJson());
       if (response.statusCode == 200) {
@@ -22,7 +22,7 @@ class UserServices extends ChangeNotifier {
 
   Future<void> signUpUser(UserModel userModel) async {
     try {
-      var response = await http.post(Uri.parse("http://localhost:8080/stores/signUp"),
+      var response = await http.post(Uri.parse("https://webappoo7.onrender.com/signUp"),
           headers: {"Content-Type": "application/json"},
           body: userModel.toJson());
       if (response.statusCode == 200) {
@@ -30,6 +30,18 @@ class UserServices extends ChangeNotifier {
         print(jsonResponse);
       } 
     } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> getAllUsers(UserModel userModel) async {
+    try {
+      var response = await http.get(Uri.parse("https://webappoo7.onrender.com/allUsers"));
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
+        print(jsonResponse);
+      }
+    } catch(error) {
       print(error);
     }
   }
