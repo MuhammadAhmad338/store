@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mystore/routes.dart';
 import 'package:mystore/services/cartServices.dart';
 import 'package:mystore/services/favouriteServices.dart';
@@ -11,6 +12,8 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = "pk_test_51MOnBRDEleESqPoxx9qvKQ2TCHuYB5mUJgnqvvMT10PUqfEfAIsFSeXOQeYl6Be4Xt6m7lJ0VsnuI9H2XVZHRFlI008f4uPYJh";
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => ThemeService()),
     ChangeNotifierProvider(create: (_) => MainServices()),

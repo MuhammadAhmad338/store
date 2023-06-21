@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mystore/models/user.dart';
 import 'package:provider/provider.dart';
 import 'package:mystore/pages/signInPage.dart';
-
 import '../services/userServices.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -14,6 +13,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -44,7 +44,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   }
                   return null;
                 },
-
                 decoration: const InputDecoration(
                   labelText: "Username"
                 ),                
@@ -113,7 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
                      child: Text("Sign In", style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: MediaQuery.of(context).size.height * 0.025
-                                     )),
+                    )),
                    )
                 ],
                )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mystore/pages/checkOutPage.dart';
 import '../utils/customCard.dart';
 
 class CartPage extends StatelessWidget {
@@ -132,6 +133,7 @@ class CartPage extends StatelessWidget {
             GestureDetector(
                 onTap: () {
                   // Do something
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CheckPage()));
                 },
                 child: Padding(
                   padding:
