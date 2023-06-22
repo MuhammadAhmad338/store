@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mystore/models/sneakers.dart';
 
 class CartServices extends ChangeNotifier {
-  final List<Sneaker> _cart = [];
+  List<Sneaker> _cart = [];
   List<Sneaker> get cart => _cart;
   double _totalAmount = 0;
   double get totalAmount => _totalAmount;

@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:mystore/pages/checkOutPage.dart';
 import '../utils/customCard.dart';

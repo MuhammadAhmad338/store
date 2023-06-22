@@ -1,98 +1,38 @@
 // ignore: file_names
 // ignore: duplicate_ignore
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' as the_bundle;
-import 'package:mystore/models/sneakers.dart';
+import 'package:googleapis/androidenterprise/v1.dart';
+import 'package:http/http.dart' as http;
+import 'package:mystore/models/product.dart';
 
 class HelperServices extends ChangeNotifier {
-  
   double _value = 0;
   double get value => _value;
-  int _currentIndex = 0;
-  int get currentIndex => _currentIndex;
-  int _count = 0;
-  int get count => _count;
-  List<dynamic> _shoes = [];
-  List<dynamic> get shoes => _shoes;
+  List<Product> _product = [];
+  List<Product> get product => _product;
 
-  static Future<List<Sneaker>> getMaleData() async {
-    final sneakerJson =
-        await the_bundle.rootBundle.loadString('assets/json/men_shoes.json');
-    final data = sneakersFromJson(sneakerJson);
-    return data;
-  }
+  var imagesList = [
+    "assets/images/hair-clipper.png",
+    "assets/images/headphones.png",
+    "assets/images/trimmer.png"
+  ];
 
-  static Future<List<Sneaker>> getFemaleData() async {
-    final sneakerJson =
-        await the_bundle.rootBundle.loadString('assets/json/women_shoes.json');
-    final data = sneakersFromJson(sneakerJson);
-    return data;
-  }
-
-  static Future<List<Sneaker>> getKidsData() async {
-    final sneakerJson =
-        await the_bundle.rootBundle.loadString('assets/json/kids_shoes.json');
-    final data = sneakersFromJson(sneakerJson);
-    return data;
-  }
-
-  static Future<Sneaker> getMaleDataById(String id) async {
-    final sneakerJson =
-        await the_bundle.rootBundle.loadString('assets/json/men_shoes.json');
-    final sneaker = sneakersFromJson(sneakerJson);
-    final data = sneaker.firstWhere((element) => element.id == id);
-    return data;
-  }
-
-  static Future<Sneaker> getFemaleDataById(String id) async {
-    final sneakerJson =
-        await the_bundle.rootBundle.loadString('assets/json/women_shoes.json');
-    final sneaker = sneakersFromJson(sneakerJson);
-    final data = sneaker.firstWhere((element) => element.id == id);
-    return data;
-  }
-
-  static Future<Sneaker> getKidsDataById(String id) async {
-    final sneakerJson =
-        await the_bundle.rootBundle.loadString('assets/json/kids_shoes.json');
-    final sneaker = sneakersFromJson(sneakerJson);
-    final data = sneaker.firstWhere((element) => element.id == id);
-    return data;
+  Future<List<ProductModel>?> getProducts() async {
+    var response = await http.get(Uri.parse("https://webappoo7.onrender.com/products/getProducts"));
+    if (response.statusCode == 200) {
+      List<dynamic> products = jsonDecode(response.body);
+      var productsList = products.map((product) => ProductModel.fromMap(product)).toList();
+      print("Got products ==> ${productsList}");
+      return productsList;
+    } else {
+      print("Some error occured!");
+    }
+    return null;
   }
 
   void sliderState(double newValue) {
     _value = newValue;
     notifyListeners();
   }
-
-  set shoeSizes(List<dynamic> newShoes) {
-    _shoes = newShoes;
-    notifyListeners();
-  }
-
-  void toggleSelectedShoes(int index) {
-    for (int i = 0; i < _shoes.length; i++) {
-      if (i == index) {
-        _shoes[index]['isSelected'] = !_shoes[index]['isSelected'];
-      }
-    }
-  }
-
-  void incrementCount() {
-    _count++;
-    notifyListeners();
-  }
-
-  void decrementCount() {
-    if (_count > 0) {
-      _count--;
-      notifyListeners();
-    }
-  }
-
-  void updateIndex(int newIndex) {
-    _currentIndex = newIndex;
-    notifyListeners();
-  }
-
 }
