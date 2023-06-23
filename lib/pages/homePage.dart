@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var helperProvider = Provider.of<HelperServices>(context);
+    var helperProvider = Provider.of<HelperServices>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
               if (snapshot.connectionState == ConnectionState.done) {
                 var buds = snapshot.data!.where((product) => product.category == "buds").toList();
                 var trimmers = snapshot.data!.where((product) => product.category == "trimmer").toList();
+
                 return SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,16 +160,18 @@ class _HomePageState extends State<HomePage> {
                         height: MediaQuery.of(context).size.height * 0.15,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: buds!.length,
+                            itemCount: buds.length,
                             itemBuilder: (context, index) {
                               var productData = buds[index];
                               return GestureDetector(
                                 onTap: () {
+                                  print("Product Quantity ==> ${productData.yourProductQuantity}");
                                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductPage(
                                     images: productData.imageUrl!,
                                     title: productData.title,
                                     description: productData.description,
                                     price: productData.price,
+                                    yourProductQuantity: productData.yourProductQuantity,
                                   )));
                                 },
                                 child: Padding(
@@ -189,7 +192,7 @@ class _HomePageState extends State<HomePage> {
                                               BorderRadius.circular(12)),
                                       child: Center(
                                         child: CachedNetworkImage(
-                                          imageUrl: productData.imageUrl[0],
+                                        imageUrl: productData.imageUrl![0],
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -227,6 +230,7 @@ class _HomePageState extends State<HomePage> {
                                     title: productData.title,
                                     description: productData.description,
                                     price: productData.price,
+                                    yourProductQuantity: productData.yourProductQuantity,
                                   )));
                                 },
                                 child: Padding(
@@ -247,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                                               BorderRadius.circular(12)),
                                       child: Center(
                                         child: CachedNetworkImage(
-                                          imageUrl: productData.imageUrl[0],
+                                          imageUrl: productData.imageUrl![0],
                                           fit: BoxFit.cover,
                                         ),
                                       ),

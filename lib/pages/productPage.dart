@@ -3,15 +3,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:mystore/models/product.dart';
+import 'package:provider/provider.dart';
+import 'package:mystore/services/cartServices.dart';
 
 class ProductPage extends StatefulWidget {
   final List<dynamic>? images;
   final String? title;
   final String? description;
   final int? price;
+  final int? yourProductQuantity;
 
   const ProductPage(
-      {super.key, this.images, this.title, this.description, this.price});
+      {super.key, this.images, this.title, this.description, this.price, this.yourProductQuantity});
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -43,6 +47,7 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    var cartProvider = Provider.of<CartServices>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -122,10 +127,10 @@ class _ProductPageState extends State<ProductPage> {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                 child: AutoSizeText(
                   widget.description.toString(),
-                  style: TextStyle(fontSize: 32),
+                  style: const TextStyle(fontSize: 32),
                   maxLines: 10,
                 ),
               ),
@@ -133,7 +138,15 @@ class _ProductPageState extends State<ProductPage> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                      cartProvider.addToCart(ProductModel(
+                        imageUrl: widget.images!,
+                        title: widget.title,
+                        description: widget.description,
+                        price: widget.price,
+                        yourProductQuantity: widget.yourProductQuantity!
+                      ), context);
+                  },
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
                       backgroundColor: Colors.black

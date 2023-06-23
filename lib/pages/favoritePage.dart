@@ -36,7 +36,7 @@ class FavoritePage extends StatelessWidget {
                               left: MediaQuery.of(context).size.width * 0.04,
                               bottom: MediaQuery.of(context).size.width * 0.04,
                               right: MediaQuery.of(context).size.width * 0.04),
-                          child: const Card(
+                          child:  Card(
                             elevation: 7,
                             child: CustomCard(),
                           ));

@@ -2,15 +2,12 @@
 // ignore: duplicate_ignore
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:googleapis/androidenterprise/v1.dart';
 import 'package:http/http.dart' as http;
 import 'package:mystore/models/product.dart';
 
 class HelperServices extends ChangeNotifier {
   double _value = 0;
   double get value => _value;
-  List<Product> _product = [];
-  List<Product> get product => _product;
 
   var imagesList = [
     "assets/images/hair-clipper.png",

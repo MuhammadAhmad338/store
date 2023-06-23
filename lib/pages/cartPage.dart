@@ -1,13 +1,26 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:mystore/pages/checkOutPage.dart';
+import '../services/cartServices.dart';
 import '../utils/customCard.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+
+  final String? title;
+  final String? price;
+  final String? imageUrl;
+  final int? yourProductQuantity;
+
+  const CartPage({Key? key,
+    this.title,
+    this.price,
+    this.imageUrl,
+    this.yourProductQuantity}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var cartProvider = Provider.of<CartServices>(context);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -53,9 +66,9 @@ class CartPage extends StatelessWidget {
                                         color: Colors.grey,
                                         borderRadius:
                                             BorderRadius.circular(36)),
-                                    child: const Center(
-                                      child: Text("1",
-                                          style: TextStyle(
+                                    child:  Center(
+                                      child: Text(cartProvider.product.length.toString(),
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black)),
                                     )))
@@ -67,16 +80,24 @@ class CartPage extends StatelessWidget {
             Expanded(
                 child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: 5,
+                    itemCount: cartProvider.product.length,
                     itemBuilder: (context, index) {
+                      var cartProducts = cartProvider.product[index];
+                      //  print(cartProducts.id);
                       return Padding(
                         padding: EdgeInsets.only(
-                            left: MediaQuery.of(context).size.width * 0.04,
+                             left: MediaQuery.of(context).size.width * 0.04,
                             bottom: MediaQuery.of(context).size.width * 0.04,
                             right: MediaQuery.of(context).size.width * 0.04),
-                        child: const Card(
+                        child:  Card(
                           elevation: 7,
-                          child: CustomCard(),
+                          child: CustomCard(
+                            title: cartProducts.title,
+                            price: cartProducts.price,
+                            imageUrl: cartProducts.imageUrl![0],
+                            yourProductQuantity: cartProducts.yourProductQuantity,
+                            index: index
+                          ),
                         ),
                       );
                     })),

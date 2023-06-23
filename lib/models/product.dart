@@ -2,23 +2,25 @@
 import 'dart:convert';
 
 class ProductModel {
-  final String title;
-  final String description;
-  final int quantity;
-  final int price;
-  final String category;
-  final List<dynamic> imageUrl;
+  final int? id;
+  final String? title;
+  final String? description;
+  final int? quantity;
+  final int? price;
+  final String? category;
+  final List<dynamic>? imageUrl;
+  int yourProductQuantity;
 
-  ProductModel({
-    required this.title,
-    required this.description,
-    required this.quantity,
-    required this.price, 
-    required this.category,
-    required this.imageUrl});
-  
-
-  
+  ProductModel(
+      {this.id ,
+      this.title,
+      this.description,
+      this.quantity,
+      this.price,
+      this.category,
+      this.imageUrl,
+      this.yourProductQuantity = 1
+      });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -44,5 +46,6 @@ class ProductModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ProductModel.fromJson(String source) => ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ProductModel.fromJson(String source) =>
+      ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

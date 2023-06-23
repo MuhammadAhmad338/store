@@ -28,7 +28,6 @@ class _CheckPageState extends State<CheckPage> {
        print('exception:$e$s');
     }
   }
- 
 
   displayPaymentSheet() async {
      try {
