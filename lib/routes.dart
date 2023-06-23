@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:mystore/pages/mainPage.dart';
-import 'pages/homePage.dart';
+import 'package:mystore/pages/productPage.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: "/",
@@ -10,8 +10,8 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const MainPage(),
     ),
     GoRoute(
-      path: "/home",
-      builder: (context, state) => const HomePage(),
+      path: "/productPage",
+      builder: (context, state) => const ProductPage(),
     ),
   ],
 );

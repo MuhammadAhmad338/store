@@ -31,6 +31,7 @@ class HelperServices extends ChangeNotifier {
     return null;
   }
 
+
   void sliderState(double newValue) {
     _value = newValue;
     notifyListeners();

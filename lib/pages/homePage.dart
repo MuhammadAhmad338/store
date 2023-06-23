@@ -1,8 +1,11 @@
 // ignore_for_file: file_names
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:googleapis/androidenterprise/v1.dart';
+import 'package:mystore/pages/productPage.dart';
 import 'package:provider/provider.dart';
 import '../services/helperServices.dart';
-import 'productPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,14 +19,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var helperProvider = Provider.of<HelperServices>(context, listen: false);
+    var helperProvider = Provider.of<HelperServices>(context);
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
             future: helperProvider.getProducts(),
             builder: (context, snapshot) {
-              var productSnapshot = snapshot.data;
               if (snapshot.connectionState == ConnectionState.done) {
+                var buds = snapshot.data!.where((product) => product.category == "buds").toList();
+                var trimmers = snapshot.data!.where((product) => product.category == "trimmer").toList();
                 return SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,12 +159,17 @@ class _HomePageState extends State<HomePage> {
                         height: MediaQuery.of(context).size.height * 0.15,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: productSnapshot!.length,
+                            itemCount: buds!.length,
                             itemBuilder: (context, index) {
-                              var productData = productSnapshot[index];
+                              var productData = buds[index];
                               return GestureDetector(
                                 onTap: () {
-                                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProductPage()));
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductPage(
+                                    images: productData.imageUrl!,
+                                    title: productData.title,
+                                    description: productData.description,
+                                    price: productData.price,
+                                  )));
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.only(
@@ -169,8 +178,9 @@ class _HomePageState extends State<HomePage> {
                                   child: Card(
                                     elevation: 3,
                                     child: Container(
-                                      height: MediaQuery.of(context).size.height *
-                                          0.9,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.9,
                                       width: MediaQuery.of(context).size.width *
                                           0.30,
                                       decoration: BoxDecoration(
@@ -178,8 +188,8 @@ class _HomePageState extends State<HomePage> {
                                           borderRadius:
                                               BorderRadius.circular(12)),
                                       child: Center(
-                                        child: Image.network(
-                                          productData.imageUrl[0],
+                                        child: CachedNetworkImage(
+                                          imageUrl: productData.imageUrl[0],
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -207,12 +217,17 @@ class _HomePageState extends State<HomePage> {
                         height: MediaQuery.of(context).size.height * 0.15,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: productSnapshot.length,
+                            itemCount: trimmers.length,
                             itemBuilder: (context, index) {
-                              var productData = productSnapshot[index];
+                              var productData = trimmers[index];
                               return GestureDetector(
                                 onTap: () {
- Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProductPage()));
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductPage(
+                                    images: productData.imageUrl!,
+                                    title: productData.title,
+                                    description: productData.description,
+                                    price: productData.price,
+                                  )));
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.only(
@@ -221,8 +236,9 @@ class _HomePageState extends State<HomePage> {
                                   child: Card(
                                     elevation: 3,
                                     child: Container(
-                                      height: MediaQuery.of(context).size.height *
-                                          0.15,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.15,
                                       width: MediaQuery.of(context).size.width *
                                           0.30,
                                       decoration: BoxDecoration(
@@ -230,8 +246,8 @@ class _HomePageState extends State<HomePage> {
                                           borderRadius:
                                               BorderRadius.circular(12)),
                                       child: Center(
-                                        child: Image.network(
-                                          productData.imageUrl[0],
+                                        child: CachedNetworkImage(
+                                          imageUrl: productData.imageUrl[0],
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -252,12 +268,6 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             }),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          helperProvider.getProducts();
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }
